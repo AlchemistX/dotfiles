@@ -49,8 +49,8 @@ set dir=~/.vim/sessions
 set noswapfile
 
 " Set persistent undo (v7.3 only)
-"set undodir=~/.vim/undodir
-"set undofile
+set undodir=~/.vim/undodir
+set undofile
 
 " Enable Syntax Colors
 syntax on
@@ -61,7 +61,7 @@ else
 endif
 
 set background=dark
-let g:solarized_termtrans=1
+"let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
@@ -85,6 +85,8 @@ let maplocalleader="\\"
 noremap <leader>o <Esc>:CommandT<CR>
 noremap <leader>O <Esc>:CommandTFlush<CR>
 noremap <leader>m <Esc>:CommandTBuffer<CR>
+
+noremap <leader>n <Esc>:NERDTreeToggle<CR>
 
 " <F1> and <F2> for save in all three modes
 noremap  <F2> <Esc>:w<CR>
