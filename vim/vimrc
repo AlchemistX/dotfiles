@@ -235,7 +235,7 @@ set showmode
 set number
 
 function! CWD()
-    let curdir = substitute(getcwd(), '/home/mnazim', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/bill', "~", "g")
     return curdir
 endfunction
 
