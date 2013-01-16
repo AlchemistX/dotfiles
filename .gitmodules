@@ -37,3 +37,6 @@
 [submodule "vim/bundle/racket"]
 	path = vim/bundle/racket
 	url = https://github.com/wlangstroth/vim-racket.git
+[submodule "vim/bundle/minibufexpl"]
+	path = vim/bundle/minibufexpl
+	url = https://github.com/fholgado/minibufexpl.vim.git
