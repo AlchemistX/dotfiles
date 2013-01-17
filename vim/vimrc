@@ -311,6 +311,13 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
+" for using clang_complete
+let g:SuperTabDefaultCompletionType = "context"
+let g:clang_auto_select = 1
+let g:clang_snippets = 1
+let g:clang_trailing_placeholder = 1
+
+
 " ; is an alias for :
 nnoremap ; :
 
