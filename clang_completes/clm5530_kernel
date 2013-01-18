@@ -1,0 +1,12 @@
+-D__KERNEL__
+-D__LINUX_ARM_ARCH__=5
+-nostdinc
+-I/opt/arm-2011.03/lib/gcc/arm-none-linux-gnueabi/4.5.2/include
+-I./arch/arm/include
+-I./include
+-I./arch/arm/mach-clm5530/include
+-DMODULE
+-DKBUILD_STR(s)=#s
+-DKBUILD_BASENAME=KBUILD_STR(main)
+-DKBUILD_MODNAME=KBUILD_STR(main)
+-include ./include/generated/autoconf.h
