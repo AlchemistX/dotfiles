@@ -35,7 +35,6 @@ set scrolloff=5                 " Keep some more lines for scope
 
 " ==> User interface.
 function! GuiTabLabel()         " GUI Tab settings
-
   let label = ''
   let buflist = tabpagebuflist(v:lnum)
   if exists('t:title')
@@ -209,19 +208,37 @@ nnoremap <leader>s :new<CR>
 " Global :: ; is an alias for :
 nnoremap ; :
 
+" Global :: ,st is an aliasd for :sts <tag name>
+function! Sts()
+  let st = expand("<cword>")
+  exe "sts ".st
+endfunction
+nmap <leader>st : call Sts()<CR>
+
+" Global :: ,tj is an aliased for :tj <tag name>
+function! Tj()
+  let st = expand("<cword>")
+  exe "tj ".st
+endfunction
+nmap <leader>tj : call Tj()<CR>
+noremap  <F3> <Esc>:call Tj()<CR>
+inoremap <F3> <Esc>:call Tj()<CR>
+nnoremap <F3> <Esc>:call Tj()<CR>
+vnoremap <F3> <Esc>:call Tj()<CR>
+
 " ==> Plugin setup and key maps.
 
 " <F3> Plugin :: ConqueTerm Launches ConqueTermVSplit in virtal split window with bash.
-noremap  <F3> <Esc>:ConqueTermVSplit bash<CR>
-inoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
-nnoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
-vnoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
+noremap  <F4> <Esc>:ConqueTermVSplit bash<CR>
+inoremap <F4> <Esc>:ConqueTermVSplit bash<CR>
+nnoremap <F4> <Esc>:ConqueTermVSplit bash<CR>
+vnoremap <F4> <Esc>:ConqueTermVSplit bash<CR>
 
 " <F4> Plugin :: ConqueTerm Launches ConqueTermSplit in horiz. split windw with bash.
-noremap  <F4> <Esc>:ConqueTermSplit bash<CR>
-inoremap <F4> <Esc>:ConqueTermSplit bash<CR>
-nnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
-vnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
+"noremap  <F4> <Esc>:ConqueTermSplit bash<CR>
+"inoremap <F4> <Esc>:ConqueTermSplit bash<CR>
+"nnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
+"vnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
 
 " <F5> Plugin :: ConqueueTerm Execute current file in Conque.
 let g:ConqueTerm_ExecFileKey = '<F5>'
@@ -271,7 +288,6 @@ let g:clang_trailing_placeholder = 1
 " Disable the colorcolumn when switching modes.  Make sure this is the
 " first autocmd for the filetype here
 autocmd FileType * setlocal colorcolumn=0
-autocmd FileType * setlocal
 
 " python support
 " --------------
