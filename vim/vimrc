@@ -2,58 +2,58 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-set cursorcolumn " highlight the screen column of the cursor
-set cursorline   " highlight the screen line of the cursor
-
-" No Vi Compatibility. That just sucks.
-set nocompatible
-
-" Fix backspace indentation
-set backspace=indent,eol,start
-
-
-" Convince Vim it can use 256 colors inside Gnome Terminal.
-" Needs CSApprox plugin
-set t_Co=256
-
-
-" Menus I like :-)
-" This must happen before the syntax system is enabled
-" aunmenu Help.
-" aunmenu Window.
-let no_buffers_menu=1
-
-" Enable mouse everywhere
-set mouse=a
-
-" Hide mouse pointer while typing
-set mousehide
+" ==> Global customizations.
+set cursorcolumn                " highlight the screen column of the cursor
+set cursorline                  " highlight the screen line of the cursor
+set nocompatible                " No Vi Compatibility. That just sucks.
+set backspace=indent,eol,start  " Fix backspace indentation
+set t_Co=256                    " Convince Vim it can use 256 colors inside Gnome Terminal.
+                                " Needs CSApprox plugin
+let no_buffers_menu=1           " Menus I like :-)
+                                " This must happen before the syntax system is enabled
+                                " aunmenu Help.
+                                " aunmenu Window.
+set mouse=a                     " Enable mouse everywhere 
+set mousehide                   " Hide mouse pointer while typing
 set mousemodel=popup
-
-" Code Folding, everything folded by default
-set foldmethod=indent
+map <MouseMiddle> <Esc>"*p      " Make mouse middle click paste without formatting it.
+set foldmethod=indent           " Code Folding, everything folded by default
 set foldlevel=99
 set foldenable
-
-" Make mouse middle click paste without formatting it.
-map <MouseMiddle> <Esc>"*p
-
-" Better modes.  Remeber where we are, support yankring
-set viminfo=!,'100,\"100,:20,<50,s10,h,n~/.viminfo
-
-" Move Backup Files to ~/.vim/sessions
-set backupdir=~/.vim/sessions
+set viminfo=!,'100,\"100,:20,<50,s10,h,n~/.viminfo " Better modes.  Remeber where we are, support yankring
+set backupdir=~/.vim/sessions   " Move Backup Files to ~/.vim/sessions
 set dir=~/.vim/sessions
-
-" Turn off annoying swapfiles
-set noswapfile
-
-" Set persistent undo (v7.3 only)
-set undodir=~/.vim/undodir
+set noswapfile                  " Turn off annoying swapfiles
+set undodir=~/.vim/undodir      " Set persistent undo (v7.3 only)
 set undofile
+set enc=utf-8                   " utf-8 default encoding
+set fileformats=unix,dos,mac    " Prefer unix over windows over os9 formats
+if has('autocmd')               " Don't bell or blink(Courtesy: Cream Editor).
+  autocmd GUIEnter * set vb t_vb=
+endif
+set scrolloff=5                 " Keep some more lines for scope
 
-" Enable Syntax Colors
-syntax on
+" ==> User interface.
+function! GuiTabLabel()         " GUI Tab settings
+
+  let label = ''
+  let buflist = tabpagebuflist(v:lnum)
+  if exists('t:title')
+    let label .= t:title . ' '
+  endif
+  let label .= '[' . bufname(buflist[tabpagewinnr(v:lnum) - 1]) . ']'
+  for bufnr in buflist
+    if getbufvar(bufnr, '&modified')
+      let label .= '+'
+      break
+    endif
+  endfor
+  return label
+endfunction
+
+set guitablabel=%{GuiTabLabel()}
+
+syntax on                       " Enable Syntax Colors
 if has("gui_running")
   set guifont=Mensch\ 10
 else
@@ -69,83 +69,11 @@ colorscheme solarized
 "colorscheme colorful256
 "call togglebg#map("<F5>")
 
-
-" Set fixed height widht of gvim window
-if has('gui_running')
+if has('gui_running')           " Set fixed height widht of gvim window
   set lines=46
 endif
 
-" The PC is fast enough, do syntax highlight syncing from start
-autocmd BufEnter * :syntax sync fromstart
-
-" Set <leader> to ',' and <localleader> to "\"
-let mapleader=","
-let maplocalleader="\\"
-
-noremap <leader>o <Esc>:CommandT<CR>
-noremap <leader>O <Esc>:CommandTFlush<CR>
-noremap <leader>m <Esc>:CommandTBuffer<CR>
-
-noremap <leader>n <Esc>:NERDTreeToggle<CR>
-
-" <F1> and <F2> for save in all three modes
-noremap  <F2> <Esc>:w<CR>
-inoremap <F2> <Esc>:w<CR>
-nnoremap <F2> <Esc>:w<CR>
-vnoremap <F2> <Esc>:w<CR>
-
-noremap  <F1> <Esc>:w<CR>
-inoremap <F1> <Esc>:w<CR>
-nnoremap <F1> <Esc>:w<CR>
-vnoremap <F1> <Esc>:w<CR>
-
-" <F3> launches ConqueTermVSplit with bash.
-noremap  <F3> <Esc>:ConqueTermVSplit bash<CR>
-inoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
-nnoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
-vnoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
-
-" <F4> launches ConqueTermVSplit with bash.
-noremap  <F4> <Esc>:ConqueTermSplit bash<CR>
-inoremap <F4> <Esc>:ConqueTermSplit bash<CR>
-nnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
-vnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
-
-" <F5> Execute current file in Conque.
-let g:ConqueTerm_ExecFileKey = '<F5>'
-
-" <leader>dd to delete buffer
-noremap <leader>bd <Esc>:bd<CR>
-vnoremap <leader>bd <Esc>:bd<CR>
-
-" Toggle pate with <F3>
-set pastetoggle=<F3>
-
-" Left/Right arrow keys change buffers in all modes
-noremap <Left> <Esc>:bp<CR>
-inoremap <Left> <Esc>:bp<CR>
-nnoremap <Left> <Esc>:bp<CR>
-vnoremap <Left> <Esc>:bp<CR>
-
-noremap <Right> <Esc>:bn<CR>
-inoremap <Right> <Esc>:bn<CR>
-nnoremap <Right> <Esc>:bn<CR>
-vnoremap <Right> <Esc>:bn<CR>
-
-
-
-" Disable up/down arrow keys
-"noremap <up> <nop>
-"noremap <down> <nop>
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"vnoremap <up> <nop>
-"vnoremap <down> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-
-" Rempam Vim 0 to ^
-noremap 0 ^
+autocmd BufEnter * :syntax sync fromstart   " The PC is fast enough, do syntax highlight syncing from start
 
 " Remember cursor position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -187,7 +115,6 @@ set wildmenu
 set wildignore=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class
 set wildmode=list:full
 
-
 " Go with smartindent if there is no plugin indent file.
 set autoindent  smartindent
 " But don't outdent hashes
@@ -201,32 +128,13 @@ set hlsearch
 set incsearch
 set showmatch
 
-" Hide matches on <leader>space
-nnoremap <leader><space> :nohlsearch<cr>
-
-" Remove trailing whitespace on <leader>S
-nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
-
-" <leader>v selects the just pasted text
-nnoremap <leader>v V`]
-
-" Copy/Paste to and from Desktop Environment
-noremap <leader>yy "+y
-noremap <leader>pp "+gP
-
-
-" Quit window on <leader>q
-nnoremap <leader>q :q<CR>
-
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-" NERDtree on <leader>t
-nnoremap <leader>t :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-
 " Make the command line two lines high and change the statusline display to
 " something that looks useful.
+function! CWD()
+    let curdir = substitute(getcwd(), '/home/bill', "~", "g")
+    return curdir
+endfunction
+
 set cmdheight=2
 set laststatus=2
 set statusline=[%l,%v\ %P%M][CWD:\ %{CWD()}][FILE:\ %f]\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*
@@ -234,16 +142,100 @@ set showcmd
 set showmode
 set number
 
-function! CWD()
-    let curdir = substitute(getcwd(), '/home/bill', "~", "g")
-    return curdir
-endfunction
-
 " Tab Settings
 set smarttab
 set tabstop=4
 
-" Taglist
+" ==> Key maps.
+let mapleader=","               "Set <leader> to ','
+let maplocalleader="\\"         "Set <localleader> to '\'
+
+" <F2> Global :: Save in all three modes
+noremap  <F2> <Esc>:w<CR>
+inoremap <F2> <Esc>:w<CR>
+nnoremap <F2> <Esc>:w<CR>
+vnoremap <F2> <Esc>:w<CR>
+
+
+" Global :: <leader>bd to delete buffer
+noremap <leader>bd <Esc>:bd<CR>
+vnoremap <leader>bd <Esc>:bd<CR>
+
+" Global :: Toggle pate with <F6>
+set pastetoggle=<F6>
+
+" Global :: Left/Right arrow keys change buffers in all modes
+noremap <Left> <Esc>:bp<CR>
+inoremap <Left> <Esc>:bp<CR>
+nnoremap <Left> <Esc>:bp<CR>
+vnoremap <Left> <Esc>:bp<CR>
+
+noremap <Right> <Esc>:bn<CR>
+inoremap <Right> <Esc>:bn<CR>
+nnoremap <Right> <Esc>:bn<CR>
+vnoremap <Right> <Esc>:bn<CR>
+
+" Global :: Rempam Vim 0 to ^
+noremap 0 ^
+
+" Global :: Hide matches on <leader>space
+nnoremap <leader><space> :nohlsearch<cr>
+
+" Global :: Remove trailing whitespace on <leader>S
+nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Global :: <leader>v selects the just pasted text
+nnoremap <leader>v V`]
+
+" Global :: Copy/Paste to and from Desktop Environment
+noremap <leader>yy "+y
+noremap <leader>pp "+gP
+
+" Global :: Quit window on <leader>q
+nnoremap <leader>q :q<CR>
+
+" Global :: Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+" Global :: Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+" Global :: Split window management
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>W <C-w>s
+nnoremap <leader>s :new<CR>
+
+" Global :: ; is an alias for :
+nnoremap ; :
+
+" ==> Plugin setup and key maps.
+
+" <F3> Plugin :: ConqueTerm Launches ConqueTermVSplit in virtal split window with bash.
+noremap  <F3> <Esc>:ConqueTermVSplit bash<CR>
+inoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
+nnoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
+vnoremap <F3> <Esc>:ConqueTermVSplit bash<CR>
+
+" <F4> Plugin :: ConqueTerm Launches ConqueTermSplit in horiz. split windw with bash.
+noremap  <F4> <Esc>:ConqueTermSplit bash<CR>
+inoremap <F4> <Esc>:ConqueTermSplit bash<CR>
+nnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
+vnoremap <F4> <Esc>:ConqueTermSplit bash<CR>
+
+" <F5> Plugin :: ConqueueTerm Execute current file in Conque.
+let g:ConqueTerm_ExecFileKey = '<F5>'
+
+" <leader>o, <leader>O, <leader>m Plugin :: Command-t
+noremap <leader>o <Esc>:CommandT<CR>
+noremap <leader>O <Esc>:CommandTFlush<CR>
+noremap <leader>m <Esc>:CommandTBuffer<CR>
+
+" <leader>t Plugin :: Toggle NERDtree.
+nnoremap <leader>t :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
+
+" Plugin :: Taglist
 "let Tlist_Compact_Format = 1
 "let Tlist_Ctags_Cmd = 'ctags'
 "let Tlist_Enable_Fold_Column = 0
@@ -256,83 +248,37 @@ set tabstop=4
 "let Tlist_GainFocus_On_ToggleOpen = 1
 "nnoremap <leader>l :Tlist<CR>
 
-" Tagbar
+" <leader>l Plugin :: Tagbar
 let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
 
-" GUI Tab settings
-function! GuiTabLabel()
-  let label = ''
-  let buflist = tabpagebuflist(v:lnum)
-  if exists('t:title')
-    let label .= t:title . ' '
-  endif
-  let label .= '[' . bufname(buflist[tabpagewinnr(v:lnum) - 1]) . ']'
-  for bufnr in buflist
-    if getbufvar(bufnr, '&modified')
-      let label .= '+'
-      break
-    endif
-  endfor
-  return label
-endfunction
-set guitablabel=%{GuiTabLabel()}
-
-" Gvim Settings
-
-" Make shift-insert work like in Xterm
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
-
-" utf-8 default encoding
-set enc=utf-8
-
-" Prefer unix over windows over os9 formats
-set fileformats=unix,dos,mac
-
-" Don't bell or blink(Courtesy: Cream Editor).
-if has('autocmd')
-  autocmd GUIEnter * set vb t_vb=
-endif
-
-" Keep some more lines for scope
-set scrolloff=5
-
-" hide some files and remove stupid help
+" Plugin :: netrw hide some files and remove stupid help
 let g:netrw_list_hide='^\.,.\(pyc\|pyo\|o\)$'
-
-" Split window management
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>W <C-w>s
-nnoremap <leader>s :new<CR>
 
 let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
-" for using clang_complete
+" Plugin :: clang_complete
 let g:SuperTabDefaultCompletionType = "context"
 let g:clang_auto_select = 1
 let g:clang_snippets = 1
 let g:clang_trailing_placeholder = 1
 
-
-" ; is an alias for :
-nnoremap ; :
+" ==> Local configuration for each type of files.
 
 " Disable the colorcolumn when switching modes.  Make sure this is the
 " first autocmd for the filetype here
-"autocmd FileType * setlocal colorcolumn=0
-"autocmd FileType * setlocal
+autocmd FileType * setlocal colorcolumn=0
+autocmd FileType * setlocal
 
 " python support
 " --------------
 "  don't highlight exceptions and builtins. I love to override them in local
 "  scopes and it sucks ass if it's highlighted then. And for exceptions I
 "  don't really want to have different colors for my own exceptions ;-)
-"autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 colorcolumn=79
 \ formatoptions+=croq softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 let python_highlight_all=1
@@ -342,13 +288,11 @@ autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 s
 
 " ruby support
 " ------------
-"autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=79
-autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=79
 
 " template language support (SGML / XML too)
 " ------------------------------------------
 " and disable taht stupid html rendering (like making stuff bold etc)
-
 fun! SelectHTML()
   let n = 1
   while n < 50 && n < line("$")
@@ -391,27 +335,24 @@ autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 " rst
 " ---
 autocmd BufNewFile,BufRead *.rst setlocal ft=rst
-"autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
-autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
 \ formatoptions+=nqt textwidth=74
 
 " markdown
 " ---
-"autocmd BufNewFile,BufRead *.txt,*.markdown,*.md setlocal ft=markdown colorcolumn=79
-autocmd BufNewFile,BufRead *.txt,*.markdown,*.md setlocal ft=markdown
-"autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
-autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd BufNewFile,BufRead *.txt,*.markdown,*.md setlocal ft=markdown colorcolumn=79
+autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
 
 " vim
 " ---
-autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2 colorcolumn=79
 
 " Javascript
 " ----------
-"autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=79
-autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=79
 let javascript_enable_domhtmlcss=1
 
 " c/c++
 " ---
-autocmd FileType c,cpp setlocal smartindent smarttab tabstop=4 shiftwidth=4 
+autocmd FileType c,cpp setlocal smartindent smarttab tabstop=4 shiftwidth=4 colorcolumn=79
+
