@@ -379,4 +379,3 @@ autocmd FileType cpp setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nos
 " c/c++
 " ---
 "autocmd FileType c,cpp setlocal smartindent smarttab tabstop=4 shiftwidth=4 colorcolumn=79
-"
