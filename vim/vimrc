@@ -368,7 +368,15 @@ autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2 col
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 colorcolumn=79
 let javascript_enable_domhtmlcss=1
 
+" DrRacket
+" --------
+autocmd BufReadPost *.rkt,*.rktl,*.scm set filetype=scheme
+
+" C/C++ 
+" ----------
+autocmd FileType c setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nosmartindent colorcolumn=79
+autocmd FileType cpp setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nosmartindent colorcolumn=79
 " c/c++
 " ---
-autocmd FileType c,cpp setlocal smartindent smarttab tabstop=4 shiftwidth=4 colorcolumn=79
-
+"autocmd FileType c,cpp setlocal smartindent smarttab tabstop=4 shiftwidth=4 colorcolumn=79
+"
