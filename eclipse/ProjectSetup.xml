@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="C Source File">
+<includepath>/home/bill/sys_roots/sys_root/usr/include</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/include/glib-2.0</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/include/gstreamer-0.10</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/include/libsoup-2.4</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/lib/glib-2.0/include</includepath>
+
+</language>
+<language name="C++ Source File">
+<includepath>/home/bill/sys_roots/sys_root/usr/include</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/include/glib-2.0</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/include/gstreamer-0.10</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/include/libsoup-2.4</includepath>
+<includepath>/home/bill/sys_roots/sys_root/usr/lib/glib-2.0/include</includepath>
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="C Source File">
+<macro>
+<name>HAVE_CONFIG_H</name><value/>
+</macro>
+
+</language>
+<language name="C++ Source File">
+<macro>
+<name>HAVE_CONFIG_H</name><value/>
+</macro>
+
+</language>
+</section>
+</cdtprojectproperties>
