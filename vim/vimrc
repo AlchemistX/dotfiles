@@ -148,6 +148,18 @@ set tabstop=4
 " Tags file
 set tags=./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
 
+" Cscope file
+set csprg=/usr/bin/cscope
+set nocsverb
+cs add ./cscope.out
+cs add ../cscope.out
+cs add ../../cscope.out
+cs add ../../../cscope.out
+cs add ../../../../cscope.out
+set csverb
+set csto=0
+set cst
+
 " ==> Key maps.
 let mapleader=","               "Set <leader> to ','
 let maplocalleader="\\"         "Set <localleader> to '\'
@@ -268,8 +280,8 @@ nmap <leader>csd : call Csd()<CR>
 "        :: Find functions calling this function.
 function! Csc()
   let st = expand("<cword>")
-  new
   exe "cs find c ".st
+  new
   if getline(1) == ""
     exe "q!"
   endif
