@@ -145,6 +145,9 @@ set number
 set smarttab
 set tabstop=4
 
+" Tags file
+set tags=./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
+
 " ==> Key maps.
 let mapleader=","               "Set <leader> to ','
 let maplocalleader="\\"         "Set <localleader> to '\'
@@ -209,6 +212,7 @@ nnoremap <leader>s :new<CR>
 nnoremap ; :
 
 " Global :: ,st is an aliasd for :sts <tag name>
+"        :: jump to selected tag with new horizental window.
 function! Sts()
   let st = expand("<cword>")
   exe "sts ".st
@@ -216,11 +220,74 @@ endfunction
 nmap <leader>st : call Sts()<CR>
 
 " Global :: ,tj is an aliased for :tj <tag name>
+"        :: jump to selected tag with push current position to stack.
 function! Tj()
   let st = expand("<cword>")
   exe "tj ".st
 endfunction
+
 nmap <leader>tj : call Tj()<CR>
+
+" Global :: ,css is an aliased for :cs find s <symbol>
+"        :: Find this C symbol
+function! Css()
+  let st = expand("<cword>")
+  new
+  exe "cs find s ".st
+  if getline(1) == ""
+    exe "q!"
+  endif
+endfunction
+nmap <leader>css : call Css()<CR>
+
+" Global :: ,csg is an aliased for :cs find g <symbol>
+"        :: Find this definition.
+function! Csg()
+  let st = expand("<cword>")
+  new
+  exe "cs find g ".st
+  if getline(1) == ""
+    exe "q!"
+  endif
+endfunction
+nmap <leader>csg : call Csg()<CR>
+
+" Global :: ,csd is an aliased for :cs find d <symbol>
+"        :: Find functions called by this function.
+function! Csd()
+  let st = expand("<cword>")
+  new
+  exe "cs find d ".st
+  if getline(1) == ""
+    exe "q!"
+  endif
+endfunction
+nmap <leader>csd : call Csd()<CR>
+
+" Global :: ,csc is an aliased for :cs find c <symbol>
+"        :: Find functions calling this function.
+function! Csc()
+  let st = expand("<cword>")
+  new
+  exe "cs find c ".st
+  if getline(1) == ""
+    exe "q!"
+  endif
+endfunction
+nmap <leader>csc : call Csc()<CR>
+
+" Global :: ,cst is an aliased for :cs find t <symbol>
+"        :: Find positions of assignments to this symbol.
+function! Cst()
+  let st = expand("<cword>")
+  new
+  exe "cs find t ".st
+  if getline(1) == ""
+    exe "q!"
+  endif
+endfunction
+nmap <leader>cst : call Cst()<CR>
+
 noremap  <F3> <Esc>:call Tj()<CR>
 inoremap <F3> <Esc>:call Tj()<CR>
 nnoremap <F3> <Esc>:call Tj()<CR>
