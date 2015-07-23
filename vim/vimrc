@@ -60,12 +60,14 @@ else
   colorscheme mustang
 endif
 
+"set t_Co=256
 set background=dark
-"let g:solarized_termtrans=1
+let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
 colorscheme solarized
+"colorscheme mustang
 "colorscheme colorful256
 "call togglebg#map("<F5>")
 
@@ -175,6 +177,8 @@ inoremap <F2> <Esc>:w<CR>
 nnoremap <F2> <Esc>:w<CR>
 vnoremap <F2> <Esc>:w<CR>
 
+" Global :: <leader>bd to delete buffer
+noremap <leader>f <Esc>V]}zf
 
 " Global :: <leader>bd to delete buffer
 noremap <leader>bd <Esc>:bd<CR>
