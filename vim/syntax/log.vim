@@ -238,7 +238,7 @@ if !exists("c_no_ansi") || exists("c_ansi_constants") || exists("c_gnu")
   syn keyword cConstant DBL_MIN_10_EXP DBL_MAX_10_EXP
   syn keyword cConstant LDBL_MIN LDBL_MAX LDBL_MIN_EXP LDBL_MAX_EXP
   syn keyword cConstant LDBL_MIN_10_EXP LDBL_MAX_10_EXP
-  syn keyword cConstant HUGE_VAL CLOCKS_PER_SEC NULL
+  syn keyword cConstant HUGE_VAL CLOCKS_PER_SEC
   syn keyword cConstant LC_ALL LC_COLLATE LC_CTYPE LC_MONETARY
   syn keyword cConstant LC_NUMERIC LC_TIME
   syn keyword cConstant SIG_DFL SIG_ERR SIG_IGN
@@ -369,7 +369,7 @@ hi def link cCppSkip		cCppOut
 hi def link cCppOut2		cCppOut
 hi def link cCppOut		Comment
 
-let b:current_syntax = "c"
+let b:current_syntax = "log"
 
 " vim: ts=8
 

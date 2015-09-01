@@ -462,10 +462,15 @@ autocmd BufReadPost *.rkt,*.rktl,*.scm set filetype=scheme
 
 " C/C++ 
 " ----------
-autocmd BufNewFile,BufRead *.log setlocal ft=log
 autocmd FileType c setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nosmartindent colorcolumn=80
 autocmd FileType cpp setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nosmartindent colorcolumn=80
-autocmd FileType log setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nosmartindent colorcolumn=80
 " c/c++
 " ---
 "autocmd FileType c,cpp setlocal smartindent smarttab tabstop=4 shiftwidth=4 colorcolumn=80
+"
+" GST LOG
+" ----------
+autocmd BufNewFile,BufRead,BufReadPost,BufReadPre *.log setlocal ft=log
+autocmd FileType log setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 nosmartindent colorcolumn=80
+" GST LOG
+" ---
