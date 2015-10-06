@@ -27,7 +27,7 @@ syn keyword gstreamerBillError ERROR FIXME
 syn keyword gstreamerBillWarn WARN
 syn keyword gstreamerBillInfo INFO
 syn match gstreamerBillMatch display "asfdemux\|rmdemux\|flvdemux\|audio\|video" contained
-syn keyword gstreamerBillCustom asfdemux rmdemux flvdemux audio video asfdemux0 rmdemux0 flvdemux0 audio_0 video_0
+syn keyword gstreamerBillCustom asfdemux rmdemux flvdemux audio video baseparse asfdemux0 rmdemux0 flvdemux0 audio_0 video_0 baseparse0
 
 
 " Default highlighting
