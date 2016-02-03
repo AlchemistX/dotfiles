@@ -1,0 +1,5 @@
+#!/bin/sh
+vimdiff "$2" "$5"
+git_diff(){
+  git diff --no-ext-diff -w "$@" | vim -R -
+}
