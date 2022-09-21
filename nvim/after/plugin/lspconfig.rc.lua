@@ -116,5 +116,10 @@ nvim_lsp.pyright.setup({
 nvim_lsp.clangd.setup({
   on_attach = on_attach,
   settings = require("bill.lsp.clangd"),
+  cmd = {
+    'clangd',
+    '-log=verbose',
+    '--query-driver=' .. os.getenv("QUERY_DRIVER"),
+  },
   capabilities = capabilities,
 })
