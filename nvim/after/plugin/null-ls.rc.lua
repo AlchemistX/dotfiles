@@ -20,6 +20,7 @@ null_ls.setup({
     formatting.stylua.with({
       extra_args = { '--indent-type=Spaces', '--indent-width=2', '--quote-style=AutoPreferSingle' },
     }),
+    formatting.clang_format,
     diagnostics.flake8,
   },
   on_attach = function(client, _)
