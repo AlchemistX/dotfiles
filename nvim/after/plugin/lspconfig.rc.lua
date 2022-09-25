@@ -13,6 +13,11 @@ local protocol = require('vim.lsp.protocol')
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = nvim_cmp_lsp.update_capabilities(protocol.make_client_capabilities())
 
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type

@@ -1,3 +1,5 @@
+-- stylua: ignore
+--
 local options = {
   -- :help options
   backup = false,                          -- creates a backup file
@@ -35,6 +37,10 @@ local options = {
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   colorcolumn = "80",
+  foldcolumn = "1",
+  foldlevel = 99,
+  foldlevelstart = 99,
+  foldenable = true,
 }
 
 vim.opt.shortmess:append "c"
