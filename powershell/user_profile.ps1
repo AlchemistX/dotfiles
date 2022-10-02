@@ -21,9 +21,9 @@ function which ($command) {
 }
 
 # Paths
-Add-PathVariable ('C:\Users\bill\scoop\apps\oh-my-posh\current\bin')
-Add-PathVariable ('C:\Users\bill\scoop\shims')
-Add-PathVariable ('C:\Program Files\WindowsApps\Microsoft.PowerShell_7.2.6.0_x64__8wekyb3d8bbwe')
+Add-PathVariable ($env:USERPROFILE + '\scoop\apps\oh-my-posh\current\bin')
+Add-PathVariable ($env:USERPROFILE + '\scoop\shims')
+Add-PathVariable ($env:USERPROFILE + '\AppData\Local\Microsoft\WindowsApps')
 
 # Prompt
 Import-Module posh-git
