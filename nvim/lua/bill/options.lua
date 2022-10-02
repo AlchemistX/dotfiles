@@ -43,7 +43,7 @@ local options = {
   foldenable = true,
 }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append('c')
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -51,6 +51,6 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd('set whichwrap+=<,>,[,],h,l')
+vim.cmd([[set iskeyword+=-]])
+vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

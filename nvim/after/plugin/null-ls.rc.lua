@@ -16,7 +16,7 @@ null_ls.setup({
     --[[ }), ]]
     --[[ null_ls.builtins.diagnostics.zsh ]]
     formatting.prettier.with({ extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' } }),
-    formatting.black.with({ extra_args = { '--fast' } }),
+    formatting.black,
     formatting.stylua.with({
       extra_args = { '--indent-type=Spaces', '--indent-width=2', '--quote-style=AutoPreferSingle' },
     }),
@@ -30,7 +30,7 @@ null_ls.setup({
         group = augroup_format,
         buffer = 0,
         callback = function()
-          vim.lsp.buf.formatting_seq_sync()
+          vim.lsp.buf.format()
         end,
       })
     end

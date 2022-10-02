@@ -25,6 +25,11 @@ dashboard.section.buttons.val = {
 
 local function footer()
   local fortune = ''
+  local is_win = vim.fn.has "win32"
+  if is_win then
+    return fortune
+  end
+
   local handle = io.popen('fortune')
   if handle then
     fortune = handle:read('*a')
