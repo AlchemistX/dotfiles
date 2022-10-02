@@ -23,6 +23,7 @@ function which ($command) {
 # Paths
 Add-PathVariable ('C:\Users\bill\scoop\apps\oh-my-posh\current\bin')
 Add-PathVariable ('C:\Users\bill\scoop\shims')
+Add-PathVariable ('C:\Program Files\WindowsApps\Microsoft.PowerShell_7.2.6.0_x64__8wekyb3d8bbwe')
 
 # Prompt
 Import-Module posh-git
@@ -42,7 +43,7 @@ Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 # Alias
-Set-Alias vim nvim
+Set-Alias vi nvim
 Set-Alias ll ls
 Set-Alias g git
 Set-Alias grep findstr
