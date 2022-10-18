@@ -25,8 +25,7 @@ dashboard.section.buttons.val = {
 
 local function footer()
   local fortune = ''
-  local is_win = vim.fn.has "win32"
-  if is_win then
+  if vim.fn.has('win32') == 1 then
     return fortune
   end
 

@@ -3,6 +3,12 @@ if not status then
   return
 end
 
+local user_shell = vim.o.shell
+
+if vim.fn.has('win32') == 1 then
+  user_shell = 'pwsh.exe'
+end
+
 toggleterm.setup({
   -- size can be a number or function which is passed the current terminal
   size = 20,
@@ -18,8 +24,7 @@ toggleterm.setup({
   persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
   direction = 'float',
   close_on_exit = true, -- close the terminal window when the process exits
-  --shell = vim.o.shell, -- change the default shell
-  shell = 'pwsh.exe',
+  shell = user_shell, -- change the default shell
   auto_scroll = true, -- automatically scroll to the bottom on terminal output
   -- This field is only relevant if direction is set to 'float'
   float_opts = {
