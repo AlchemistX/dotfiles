@@ -11,7 +11,7 @@ end
 local protocol = require('vim.lsp.protocol')
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = nvim_cmp_lsp.update_capabilities(protocol.make_client_capabilities())
+local capabilities = nvim_cmp_lsp.default_capabilities(protocol.make_client_capabilities())
 
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
