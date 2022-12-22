@@ -3,3 +3,5 @@
 ### nvim
 ### lvim
 ## PowerShell
+## zsh
+### powerlevel10k
