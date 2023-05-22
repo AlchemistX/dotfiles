@@ -14,7 +14,7 @@ vim.opt.listchars:append("eol:↴")
 vim.diagnostic.config({
 	virtual_text = false,
 })
-vim.opt.tags = "/home/bill/.tags/tags_gst_upstream"
+vim.opt.tags = ""
 
 -- lvim general options
 lvim.log.level = "info"
