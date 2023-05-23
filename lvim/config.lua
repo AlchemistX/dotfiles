@@ -173,13 +173,13 @@ require("dap").adapters.lldb = {
 	type = "server",
 	host = "127.0.0.1",
 	port = 13000,
-	-- command = '/Users/bill/.local/share/nvim/mason/bin/codelldb',
+	command = '',
 }
 
 require("dap").adapters.cppdbg = {
 	id = "cppdbg",
 	type = "executable",
-	command = "/home/bill/.local/share/nvim/mason/bin/OpenDebugAD7",
+	command = "",
 }
 
 require("dap").configurations.cpp = {
@@ -199,7 +199,7 @@ require("dap").configurations.cpp = {
 		request = "launch",
 		MIMode = "gdb",
 		miDebuggerServerAddress = "192.168.0.117:9090",
-		miDebuggerPath = "/share/WORK/oe_build/build-starfish-mlt4tv-o22/BUILD/work/x86_64-linux/lib32-gdb-cross-arm/9.1-r0/image/share/WORK/oe_build/build-starfish-mlt4tv-o22/BUILD/work/x86_64-linux/lib32-gdb-cross-arm/9.1-r0/recipe-sysroot-native/usr/bin/arm-starfishmllib32-linux-gnueabi/arm-starfishmllib32-linux-gnueabi-gdb",
+		miDebuggerPath = "",
 		cwd = "${workspaceFolder}",
 		program = function()
 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
