@@ -22,6 +22,8 @@ setopt EXTENDED_HISTORY
 # autocompletion using arrow keys (based on history)
 bindkey '\e[A' history-substring-search-up
 bindkey '\e[B' history-substring-search-down
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 
 # Load and initialise completion system
 autoload -Uz compinit
@@ -30,7 +32,11 @@ compinit
 # History File
 HISTFILE=${ZDOTDIR}/.zsh_history
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # (Option #1) Enable Starship
 eval "$(starship init zsh)"
