@@ -148,7 +148,10 @@ lvim.plugins = {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "github/copilot.vim" },    -- or zbirenbaum/copilot.lua
+      {
+        "zbirenbaum/copilot.lua",
+        config = function() require("copilot").setup({}) end,
+      },
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     build = "make tiktoken",       -- Only on MacOS or Linux
