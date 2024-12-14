@@ -160,6 +160,36 @@ lvim.plugins = {
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
+  {
+    -- npm install -g language-server-bitbake
+    "yoctoproject/vscode-bitbake",
+    config = function()
+      vim.filetype.add({
+        extension = {
+          bb = "bitbake",
+          bbappend = "bitbake",
+          bbclass = "bitbake",
+          inc = "bitbake",
+        },
+      })
+
+      local lspconfig = require("lspconfig")
+      local configs = require("lspconfig.configs")
+      local util = require 'lspconfig.util'
+      if not configs.bitbake_ls then
+        configs.bitbake_ls = {
+          default_config = {
+            cmd = { 'language-server-bitbake', '--stdio' },
+            filetypes = { 'bitbake' },
+            root_dir = util.find_git_ancestor,
+            single_file_support = false,
+          },
+        }
+      end
+
+      lspconfig.bitbake_ls.setup({})
+    end,
+  },
 }
 
 -- setup dap
