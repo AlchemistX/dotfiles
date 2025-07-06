@@ -241,6 +241,16 @@ return {
           },
         },
       },
+      clangd = (function()
+        local query_driver = os.getenv("QUERY_DRIVER")
+        local cmd = { "clangd" }
+        if query_driver and #query_driver > 0 then
+          table.insert(cmd, "--query-driver=" .. query_driver)
+        end
+        return {
+          cmd = cmd,
+        }
+      end)(),
     }
 
     -- Ensure the servers and tools above are installed
