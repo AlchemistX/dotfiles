@@ -22,14 +22,14 @@ alias -g ......='../../../../..'
 
 # List directory contents
 if command -v eza &> /dev/null; then
-    alias l='eza -lah --icons'
-    alias ls='eza --icons'
-    alias ll='eza -lhg --icons'
-    alias la='eza -lAhg --icons'
-    alias lt='eza -lTAhg --icons'
-    alias lt1='eza -lTAhg --level=1 --icons'
-    alias lt2='eza -lTAhg --level=2 --icons'
-    alias lt3='eza -lTAhg --level=3 --icons'
+    alias l='eza -lah --icons --git --git-repos'
+    alias ls='eza --icons --git --git-repos'
+    alias ll='eza -lhg --icons --git --git-repos'
+    alias la='eza -lAhg --icons --git --git-repos'
+    alias lt='eza -lTAhg --icons --git --git-repos'
+    alias lt1='eza -lTAhg --level=1 --icons --git --git-repos'
+    alias lt2='eza -lTAhg --level=2 --icons --git --git-repos'
+    alias lt3='eza -lTAhg --level=3 --icons --git --git-repos'
 else
     alias lsa='ls -lah'
     alias l='ls -lah'

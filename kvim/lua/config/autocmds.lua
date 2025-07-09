@@ -59,7 +59,7 @@ function M.load_defaults()
           "tsplayground",
           "DressingSelect",
           "Jaq",
-          "Oil",
+          "oil",
         },
         callback = function()
           vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
