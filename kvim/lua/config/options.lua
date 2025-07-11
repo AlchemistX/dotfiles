@@ -38,6 +38,7 @@ vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
+vim.opt.foldcolumn = "1"
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -54,3 +55,5 @@ vim.opt.scrolloff = 5
 
 -- Disable commandline until it is needed. Ths gives us a cleaner look and an extra line
 vim.opt.cmdheight = 0
+
+vim.opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"

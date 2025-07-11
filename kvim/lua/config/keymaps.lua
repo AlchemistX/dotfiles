@@ -7,6 +7,15 @@ vim.keymap.set("n", "<leader>cf", function()
     lsp_format = "fallback",
   })
 end, { desc = "Format current file" })
+vim.keymap.set("n", "]'", ":vertical resize -2<CR>", { desc = "Vertical resize -2" })
+vim.keymap.set("n", "[;", ":vertical resize +2<CR>", { desc = "Vertical resize +2" })
+vim.keymap.set(
+  "v",
+  "<leader>/",
+  "<Plug>(comment_toggle_linewise_visual)",
+  { desc = "Comment toggle linewise (visual)" }
+)
+vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", { desc = "Comment toggle current line" })
 
 local M = {}
 local Log = require("config.log")

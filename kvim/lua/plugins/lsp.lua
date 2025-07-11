@@ -167,19 +167,19 @@ return {
         },
       },
       -- } or {},
-      virtual_text = {
-        source = "if_many",
-        spacing = 2,
-        format = function(diagnostic)
-          local diagnostic_message = {
-            [vim.diagnostic.severity.ERROR] = diagnostic.message,
-            [vim.diagnostic.severity.WARN] = diagnostic.message,
-            [vim.diagnostic.severity.INFO] = diagnostic.message,
-            [vim.diagnostic.severity.HINT] = diagnostic.message,
-          }
-          return diagnostic_message[diagnostic.severity]
-        end,
-      },
+      -- virtual_text = {
+      --   source = "if_many",
+      --   spacing = 2,
+      --   format = function(diagnostic)
+      --     local diagnostic_message = {
+      --       [vim.diagnostic.severity.ERROR] = diagnostic.message,
+      --       [vim.diagnostic.severity.WARN] = diagnostic.message,
+      --       [vim.diagnostic.severity.INFO] = diagnostic.message,
+      --       [vim.diagnostic.severity.HINT] = diagnostic.message,
+      --     }
+      --     return diagnostic_message[diagnostic.severity]
+      --   end,
+      -- },
     })
 
     -- LSP servers and clients are able to communicate to each other what features they support.
@@ -240,6 +240,12 @@ return {
             telemetry = { enable = false },
           },
         },
+        on_attach = function(client, bufnr)
+          local navic = require("nvim-navic")
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
+        end,
       },
       clangd = (function()
         local query_driver = os.getenv("QUERY_DRIVER")
@@ -249,6 +255,12 @@ return {
         end
         return {
           cmd = cmd,
+          on_attach = function(client, bufnr)
+            local navic = require("nvim-navic")
+            if client.server_capabilities.documentSymbolProvider then
+              navic.attach(client, bufnr)
+            end
+          end,
         }
       end)(),
     }
