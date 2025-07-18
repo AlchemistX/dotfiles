@@ -263,6 +263,23 @@ return {
           end,
         }
       end)(),
+      pyright = {
+        on_attach = function(client, bufnr)
+          local navic = require("nvim-navic")
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
+        end,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic", -- or "strict"
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed
