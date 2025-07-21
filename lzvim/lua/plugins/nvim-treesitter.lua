@@ -55,7 +55,7 @@ return {
         -- and should return true or false
         include_surrounding_whitespace = true,
       })
-      -- opts.textobjects.select = vim.tbl_deep_extend("force", opts.textobjects.swap or {}, {
+      -- opts.textobjects.swap = vim.tbl_deep_extend("force", opts.textobjects.swap or {}, {
       --   enable = true,
       --   swap_next = {
       --     ["<leader>a"] = { query = "@parameter.inner", desc = "Swap with next parameter" },

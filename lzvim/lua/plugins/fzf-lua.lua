@@ -1,16 +1,15 @@
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "echasnovski/mini.icons" },
-  opts = {
-    keymap = {
+  opts = function(_, opts)
+    opts.keymap = vim.tbl_deep_extend("force", opts.keymap or {}, {
       builtin = {
         ["<C-d>"] = "preview-page-down",
         ["<C-u>"] = "preview-page-up",
         ["<C-f>"] = "preview-half-page-down",
         ["<C-b>"] = "preview-half-page-up",
       },
-    },
-  },
+    })
+  end,
   keys = {
     { ";f", ":FzfLua files<Enter>", desc = "Find file in project directory" },
     { ";g", ":FzfLua live_grep<Enter>", desc = "Find by grapping in project directory" },
