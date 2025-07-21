@@ -1,6 +1,13 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
+    servers = {
+      bitbake_language_server = {
+        cmd = { "language-server-bitbake", "--stdio" },
+        filetypes = { "bitbake", "bbappend", "bbclass", "inc" },
+        root_dir = require("lspconfig.util").root_pattern("conf/layer.conf", ".git"),
+      },
+    },
     setup = {
       clangd = function(_, opts)
         local query_driver = os.getenv("QUERY_DRIVER")
