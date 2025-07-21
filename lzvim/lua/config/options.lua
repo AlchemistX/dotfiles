@@ -4,3 +4,5 @@
 vim.diagnostic.config({
   virtual_text = false,
 })
+vim.lsp.inlay_hint.enable(false)
+vim.opt.clipboard = "unnamedplus"
