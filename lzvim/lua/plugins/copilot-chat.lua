@@ -99,5 +99,14 @@ return {
     -- opts.separator = "───" -- separator to use in chat
     opts.default_language = "ko"
     opts.system_prompt = prompts.COPILOT_INSTRUCTIONS.system_prompt .. PROMPT
+    opts.model = "claude-sonnet-4"
+    -- opts.agent = { enabled = true }
+
+    local mappings = require("CopilotChat.config.mappings")
+    mappings.reset = {
+      normal = "",
+      insert = "",
+      callback = function() end,
+    }
   end,
 }
